@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ანანო გიგოლაშვილი</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Georgian:wght@400;500;600&family=Noto+Sans+Georgian:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #ffffff;
+    --ink: #17181a;
+    --ink-soft: #55585d;
+    --line: #e4e4e2;
+    --graphite: #1c1c1e;
+    --paper: #fafafa;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Noto Sans Georgian', sans-serif;
+    font-weight:400;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:'Noto Serif Georgian', serif;
+    font-weight:500;
+    margin:0;
+    letter-spacing:0.01em;
+  }
+  a{color:inherit;}
+  img{max-width:100%;display:block;}
+
+  .wrap{
+    max-width:1180px;
+    margin:0 auto;
+    padding:0 40px;
+  }
+
+  /* ---- Nav ---- */
+  nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(255,255,255,0.88);
+    backdrop-filter:saturate(180%) blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  nav .wrap{
+    display:flex; align-items:center; justify-content:space-between;
+    padding-top:20px; padding-bottom:20px;
+  }
+  .brand{
+    font-family:'Noto Serif Georgian', serif;
+    font-size:1.05rem;
+    letter-spacing:0.04em;
+  }
+  .navlinks{display:flex; gap:32px; font-size:0.92rem; color:var(--ink-soft);}
+  .navlinks a{text-decoration:none; transition:color .2s ease;}
+  .navlinks a:hover{color:var(--ink);}
+
+  /* ---- Hero ---- */
+  .hero{
+    padding:96px 0 84px;
+    display:grid;
+    grid-template-columns:1.1fr 0.9fr;
+    gap:64px;
+    align-items:center;
+  }
+  .hero-eyebrow{
+    font-size:0.85rem;
+    color:var(--ink-soft);
+    margin-bottom:22px;
+  }
+  .hero h1{
+    font-size:clamp(2.6rem, 5vw, 4.1rem);
+    line-height:1.08;
+  }
+  .hero p.lede{
+    margin-top:26px;
+    max-width:46ch;
+    font-size:1.08rem;
+    color:var(--ink-soft);
+  }
+  .hero-portrait{
+    position:relative;
+  }
+  .hero-portrait img{
+    width:100%;
+    height:560px;
+    object-fit:cover;
+    border-radius:2px;
+  }
+  .hero-portrait .tag{
+    position:absolute;
+    left:-1px; bottom:-1px;
+    background:var(--graphite);
+    color:#fff;
+    padding:10px 18px;
+    font-size:0.82rem;
+    letter-spacing:0.03em;
+  }
+  .hero-portrait .ig-badge{
+    position:absolute;
+    right:-1px; top:-1px;
+    background:#fff;
+    color:var(--ink);
+    padding:10px 18px;
+    font-size:0.82rem;
+    letter-spacing:0.02em;
+    text-decoration:none;
+    border:1px solid var(--line);
+    transition:background .2s ease, color .2s ease;
+  }
+  .hero-portrait .ig-badge:hover{
+    background:var(--graphite);
+    color:#fff;
+  }
+
+  /* ---- section titles ---- */
+  .section-head{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    border-bottom:1px solid var(--line);
+    padding-bottom:18px;
+    margin-bottom:48px;
+  }
+  .section-head h2{font-size:1.7rem;}
+  .section-head span{font-size:0.85rem; color:var(--ink-soft);}
+
+  /* ---- About ---- */
+  .about{padding:64px 0 96px;}
+  .about-grid{
+    display:grid;
+    grid-template-columns:0.85fr 1.15fr;
+    gap:64px;
+    align-items:start;
+  }
+  .about-grid img{
+    width:100%;
+    height:460px;
+    object-fit:cover;
+    border-radius:2px;
+  }
+  .about-text p{
+    margin:0 0 20px;
+    color:var(--ink-soft);
+    font-size:1.02rem;
+    max-width:58ch;
+  }
+  .about-text p:last-child{margin-bottom:0;}
+  .about-text strong{color:var(--ink); font-weight:600;}
+  .facts{
+    margin-top:36px;
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:24px;
+    border-top:1px solid var(--line);
+    padding-top:28px;
+  }
+  .fact dt{
+    font-size:0.78rem;
+    letter-spacing:0.03em;
+    color:var(--ink-soft);
+    margin-bottom:6px;
+  }
+  .fact dd{
+    margin:0;
+    font-family:'Noto Serif Georgian', serif;
+    font-size:1.05rem;
+  }
+
+  /* ---- Car section ---- */
+  .car{
+    background:var(--graphite);
+    color:#f2f2f0;
+    padding:96px 0;
+  }
+  .car .section-head{border-bottom-color:rgba(255,255,255,0.15);}
+  .car .section-head span{color:#b9bab8;}
+  .car .section-head h2{color:#fff;}
+  .car-intro{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:64px;
+    margin-bottom:56px;
+  }
+  .car-intro h3{
+    color:#fff;
+    font-size:2.1rem;
+    line-height:1.15;
+    margin-bottom:20px;
+  }
+  .car-intro p{
+    color:#c7c8c6;
+    font-size:1.02rem;
+    max-width:52ch;
+  }
+  .spec-list{
+    list-style:none;
+    margin:0; padding:0;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:18px 32px;
+  }
+  .spec-list li{
+    display:flex;
+    justify-content:space-between;
+    border-bottom:1px solid rgba(255,255,255,0.14);
+    padding-bottom:14px;
+    font-size:0.96rem;
+  }
+  .spec-list li span:first-child{color:#9a9b99;}
+  .spec-list li span:last-child{color:#fff; font-weight:500;}
+
+  .gallery{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    grid-auto-rows:220px;
+    gap:12px;
+  }
+  .gallery img{
+    width:100%; height:100%;
+    object-fit:cover;
+    border-radius:1px;
+    filter:grayscale(6%);
+  }
+  .gallery a:nth-child(1){grid-column:span 2; grid-row:span 2;}
+  .gallery a{display:block; overflow:hidden; cursor:zoom-in;}
+  .gallery a img{transition:transform .5s ease;}
+  .gallery a:hover img{transform:scale(1.04);}
+
+  /* ---- Lightbox ---- */
+  .lightbox{
+    position:fixed; inset:0; z-index:100;
+    background:rgba(10,10,10,0.92);
+    display:none;
+    align-items:center; justify-content:center;
+    padding:40px;
+    opacity:0;
+    transition:opacity .25s ease;
+  }
+  .lightbox.open{display:flex; opacity:1;}
+  .lightbox img{
+    max-width:min(90vw, 1100px);
+    max-height:88vh;
+    width:auto; height:auto;
+    object-fit:contain;
+    box-shadow:0 20px 60px rgba(0,0,0,0.5);
+  }
+  .lightbox-close{
+    position:absolute;
+    top:24px; right:32px;
+    background:none; border:none;
+    color:#fff;
+    font-family:'Noto Sans Georgian', sans-serif;
+    font-size:1.6rem;
+    line-height:1;
+    cursor:pointer;
+    padding:8px;
+  }
+
+  /* ---- Quote ---- */
+  .quote{
+    padding:90px 0;
+    text-align:center;
+  }
+  .quote blockquote{
+    margin:0 auto;
+    max-width:720px;
+    font-family:'Noto Serif Georgian', serif;
+    font-size:clamp(1.5rem, 3vw, 2.1rem);
+    line-height:1.4;
+    font-weight:500;
+    color:var(--ink);
+  }
+  .quote cite{
+    display:block;
+    margin-top:22px;
+    font-style:normal;
+    font-size:0.9rem;
+    color:var(--ink-soft);
+  }
+
+  footer{
+    border-top:1px solid var(--line);
+    padding:36px 0;
+    font-size:0.85rem;
+    color:var(--ink-soft);
+    display:flex;
+    justify-content:space-between;
+  }
+
+  @media (max-width:860px){
+    .wrap{padding:0 22px;}
+    .hero{grid-template-columns:1fr; gap:36px; padding:64px 0 48px;}
+    .hero-portrait img{height:380px;}
+    .about-grid{grid-template-columns:1fr; gap:32px;}
+    .about-grid img{height:340px;}
+    .facts{grid-template-columns:1fr 1fr;}
+    .car-intro{grid-template-columns:1fr; gap:32px;}
+    .spec-list{grid-template-columns:1fr;}
+    .gallery{grid-template-columns:repeat(2,1fr); grid-auto-rows:170px;}
+    .gallery a:nth-child(1){grid-column:span 2; grid-row:span 1; height:100%;}
+    footer{flex-direction:column; gap:8px;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="brand">ა. გიგოლაშვილი</div>
+    <div class="navlinks">
+      <a href="#about">ჩემ შესახებ</a>
+      <a href="#car">E46</a>
+      <a href="https://www.instagram.com/_anan0_/" target="_blank" rel="noopener">Instagram</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero wrap">
+  <div>
+    <div class="hero-eyebrow">პირადი გვერდი</div>
+    <h1>ანანო<br>გიგოლაშვილი</h1>
+    <p class="lede">მანქანების სიყვარული, სისადავის მოყვარული ესთეტიკა და ერთი შავი BMW, რომელიც ყველაფერს ამბობს ჩემზე იმაზე მეტს, ვიდრე სიტყვები შეძლებდნენ.</p>
+  </div>
+  <div class="hero-portrait">
+    <img src="https://i.postimg.cc/907yFS8X/6b850d25-0361-45a6-95f4-29f16272f046.jpg" alt="ანანო გიგოლაშვილი" onclick="openLightbox('https://i.postimg.cc/907yFS8X/6b850d25-0361-45a6-95f4-29f16272f046.jpg')" style="cursor:zoom-in;">
+    <div class="tag">თბილისი, საქართველო</div>
+    <a class="ig-badge" href="https://www.instagram.com/_anan0_/" target="_blank" rel="noopener">@_anan0_ →</a>
+  </div>
+</header>
+
+<section class="about wrap" id="about">
+  <div class="section-head">
+    <h2>ჩემ შესახებ</h2>
+    <span>ბიოგრაფია</span>
+  </div>
+  <div class="about-grid">
+    <img src="https://i.postimg.cc/tCFFKKnW/3224d938-632b-47e8-9f9d-e0203ded4e94.jpg" alt="ანანო გიგოლაშვილი" onclick="openLightbox('https://i.postimg.cc/tCFFKKnW/3224d938-632b-47e8-9f9d-e0203ded4e94.jpg')" style="cursor:zoom-in;">
+    <div class="about-text">
+      <p><strong>ანანო გიგოლაშვილი</strong> დაიბადა და გაიზარდა საქართველოში. ბავშვობიდანვე მოსწონდა ყველაფერი, რასაც ბორბლები ჰქონდა — ჯერ ველოსიპედი, მერე პირველი გაკვეთილები მამის მანქანაში, სადაც ისწავლა არა მხოლოდ ტარება, არამედ მანქანის მოსმენაც: ხმა, ძრავის რიტმი, გზასთან კონტაქტის შეგრძნება.</p>
+      <p>წლების განმავლობაში ეს ინტერესი გადაიზარდა ნამდვილ გატაცებაში. ანანო თვლის, რომ კარგი მანქანა არ არის მხოლოდ ტრანსპორტი — ეს ხასიათია, ხელნაწერი, ამბავი, რომელსაც ყოველი დეტალი ჰყვება. სწორედ ამიტომ აირჩია მან სისადავე და კლასიკური ხაზი მოძველებულ ტრენდებზე მეტად.</p>
+      <p>დღეს მისი ცხოვრების ერთ-ერთი ყველაზე მნიშვნელოვანი ნაწილი გახლავთ საკუთარი შავი <strong>BMW E46 330 Sedan</strong> — მანქანა, რომელსაც თავად უვლის, სუფთა და მოვლილი ინახავს და ყოველ გზაზე მასთან ერთად ახალ მოგონებას ქმნის.</p>
+    </div>
+  </div>
+  <dl class="facts">
+    <div class="fact"><dt>დაბადების ადგილი</dt><dd>საქართველო</dd></div>
+    <div class="fact"><dt>ერთ-ერთი გატაცება</dt><dd>ავტომობილები &amp; დიზაინი</dd></div>
+    <div class="fact"><dt>საყვარელი მანქანა</dt><dd>BMW E46</dd></div>
+    <div class="fact"><dt>სტილი</dt><dd>სადა &amp; კლასიკური</dd></div>
+  </dl>
+</section>
+
+<section class="car" id="car">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>მისი მანქანა</h2>
+      <span>BMW E46 330 Sedan</span>
+    </div>
+
+    <div class="car-intro">
+      <div>
+        <h3>შავი E46, ერთგული თანამგზავრი</h3>
+        <p>ეს არ არის უბრალოდ მანქანა — ეს არის ხასიათი. E46-ის თაობა ცნობილია თავისი დაბალანსებული სავალი ნაწილით, სუფთა ხაზებითა და დროისგან გაუტეხავი დიზაინით. ანანოსთვის ეს არის მთელი ესთეტიკის საფუძველი: არაფერი ზედმეტი, ყველაფერი გააზრებული.</p>
+      </div>
+      <ul class="spec-list">
+        <li><span>მოდელი</span><span>BMW E46 330 Sedan</span></li>
+        <li><span>ძარის ტიპი</span><span>სედანი</span></li>
+        <li><span>ფერი</span><span>შავი</span></li>
+        <li><span>ხასიათი</span><span>სადა &amp; მძლავრი</span></li>
+      </ul>
+    </div>
+
+    <div class="gallery">
+      <a href="#" onclick="openLightbox('https://i.postimg.cc/dZFJBzFW/0ab3bc4d-136d-4d0f-a7ed-c10afd097594.jpg');return false;">
+        <img src="https://i.postimg.cc/dZFJBzFW/0ab3bc4d-136d-4d0f-a7ed-c10afd097594.jpg" alt="BMW E46 330 Sedan">
+      </a>
+      <a href="#" onclick="openLightbox('https://i.postimg.cc/qqhgkT5V/52485d44-1bb4-4480-adff-496fd28b458d.jpg');return false;">
+        <img src="https://i.postimg.cc/qqhgkT5V/52485d44-1bb4-4480-adff-496fd28b458d.jpg" alt="BMW E46 330 Sedan">
+      </a>
+      <a href="#" onclick="openLightbox('https://i.postimg.cc/1Xn49Qjs/93cb9ba7-da66-4b65-9343-b384e1f1598f.jpg');return false;">
+        <img src="https://i.postimg.cc/1Xn49Qjs/93cb9ba7-da66-4b65-9343-b384e1f1598f.jpg" alt="BMW E46 330 Sedan">
+      </a>
+      <a href="#" onclick="openLightbox('https://i.postimg.cc/6q2T9XmK/aad3ee05-32e6-4524-b62c-c1d668ca526d.jpg');return false;">
+        <img src="https://i.postimg.cc/6q2T9XmK/aad3ee05-32e6-4524-b62c-c1d668ca526d.jpg" alt="BMW E46 330 Sedan">
+      </a>
+      <a href="#" onclick="openLightbox('https://i.postimg.cc/wMy36pGp/e79ac81f-3544-4039-877b-6d85f2073a4c.jpg');return false;">
+        <img src="https://i.postimg.cc/wMy36pGp/e79ac81f-3544-4039-877b-6d85f2073a4c.jpg" alt="BMW E46 330 Sedan">
+      </a>
+      <a href="#" onclick="openLightbox('https://i.postimg.cc/PJpNtjRt/ea5b9960-0af4-4601-9def-e24df5955cda.jpg');return false;">
+        <img src="https://i.postimg.cc/PJpNtjRt/ea5b9960-0af4-4601-9def-e24df5955cda.jpg" alt="BMW E46 330 Sedan">
+      </a>
+      <a href="#" onclick="openLightbox('https://i.postimg.cc/g0gVM3X4/29bab2c1-879e-42b3-8c73-47f6204aab3c.jpg');return false;">
+        <img src="https://i.postimg.cc/g0gVM3X4/29bab2c1-879e-42b3-8c73-47f6204aab3c.jpg" alt="BMW E46 330 Sedan">
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="quote wrap">
+  <blockquote>
+    „კარგი მანქანა ისეთივე სადაა, როგორც კარგი გემოვნება — არაფერი ზედმეტი, ყველაფერი თავის ადგილზე."
+    <cite>— ანანო გიგოლაშვილი</cite>
+  </blockquote>
+</section>
+
+<footer class="wrap">
+  <span>ანანო გიგოლაშვილი</span>
+  <span>საქართველო</span>
+</footer>
+
+<div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+  <button class="lightbox-close" onclick="closeLightbox(event)" aria-label="დახურვა">✕</button>
+  <img id="lightbox-img" src="" alt="გადიდებული სურათი">
+</div>
+
+<script>
+  function openLightbox(src){
+    var lb = document.getElementById('lightbox');
+    var img = document.getElementById('lightbox-img');
+    img.src = src;
+    lb.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLightbox(e){
+    if(e) e.preventDefault();
+    var lb = document.getElementById('lightbox');
+    lb.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape') closeLightbox();
+  });
+</script>
+
+</body>
+</html>
