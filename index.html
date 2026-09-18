@@ -234,6 +234,118 @@
   .gallery a img{transition:transform .5s ease;}
   .gallery a:hover img{transform:scale(1.04);}
 
+
+  /* ---- გვერდების გადართვა ---- */
+  function showSpecs(){
+    document.body.classList.add('specs-view');
+    window.scrollTo(0,0);
+    if(history.replaceState) history.replaceState(null,'','#specs');
+  }
+  function showMain(){
+    document.body.classList.remove('specs-view');
+  }
+  if(window.location.hash === '#specs'){ document.body.classList.add('specs-view'); }
+
+  /* ---- Share ---- */
+  .share-btn{
+    font-family:'Noto Sans Georgian', sans-serif;
+    font-size:0.9rem;
+    background:var(--graphite);
+    color:#fff;
+    border:1px solid var(--graphite);
+    padding:8px 16px;
+    cursor:pointer;
+    transition:opacity .2s ease;
+  }
+  .share-btn:hover{opacity:.82;}
+  .share-fab{
+    position:fixed; right:24px; bottom:24px; z-index:90;
+    border-radius:40px;
+    padding:13px 22px;
+    box-shadow:0 10px 30px rgba(0,0,0,.25);
+  }
+  .share-modal{
+    position:fixed; inset:0; z-index:120;
+    background:rgba(10,10,10,0.6);
+    display:none; align-items:center; justify-content:center;
+    padding:24px;
+  }
+  .share-modal.open{display:flex;}
+  .share-card{
+    background:#fff;
+    width:100%; max-width:400px;
+    padding:28px;
+    border-radius:4px;
+    position:relative;
+  }
+  .share-card h3{font-size:1.25rem; margin-bottom:6px;}
+  .share-card .sub{font-size:0.86rem; color:var(--ink-soft); margin-bottom:22px;}
+  .share-list{display:grid; gap:10px;}
+  .share-list a, .share-list button{
+    display:flex; align-items:center; gap:12px;
+    width:100%;
+    text-align:left;
+    font-family:'Noto Sans Georgian', sans-serif;
+    font-size:0.95rem;
+    color:var(--ink);
+    text-decoration:none;
+    background:var(--paper);
+    border:1px solid var(--line);
+    padding:13px 16px;
+    cursor:pointer;
+    transition:background .2s ease;
+  }
+  .share-list a:hover, .share-list button:hover{background:#f0f0ee;}
+  .share-list .ico{
+    width:30px; height:30px; flex:none;
+    border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    color:#fff; font-size:0.8rem; font-weight:600;
+  }
+  .ico-wa{background:#25D366;}
+  .ico-ms{background:#0084FF;}
+  .ico-ig{background:linear-gradient(45deg,#f09433,#dc2743,#bc1888);}
+  .ico-cp{background:var(--graphite);}
+  .share-close{
+    position:absolute; top:12px; right:14px;
+    background:none; border:none; font-size:1.3rem; cursor:pointer; color:var(--ink-soft);
+  }
+  .copied-note{
+    margin-top:14px; font-size:0.84rem; color:#1a7f37; display:none;
+  }
+  .copied-note.show{display:block;}
+
+  .page-hero{background:var(--graphite);color:#f2f2f0;padding:80px 0 72px;}
+  .page-hero .eyebrow{font-size:.85rem;color:#9a9b99;margin-bottom:18px;}
+  .page-hero h1{color:#fff;font-size:clamp(2.2rem,4.6vw,3.4rem);line-height:1.1;}
+  .page-hero p{color:#c7c8c6;max-width:60ch;margin-top:20px;font-size:1.02rem;}
+  .highlights{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:48px;
+    border-top:1px solid rgba(255,255,255,.15);padding-top:30px;}
+  .hl dt{font-size:.78rem;color:#9a9b99;margin-bottom:6px;}
+  .hl dd{margin:0;font-family:'Noto Serif Georgian',serif;font-size:1.5rem;color:#fff;}
+  .hl dd small{font-size:.85rem;color:#c7c8c6;font-family:'Noto Sans Georgian',sans-serif;}
+
+  .block{padding:64px 0;}
+  .section-head{display:flex;align-items:baseline;justify-content:space-between;
+    border-bottom:1px solid var(--line);padding-bottom:16px;margin-bottom:34px;}
+  .section-head h2{font-size:1.5rem;}
+  .section-head span{font-size:.85rem;color:var(--ink-soft);}
+  table.specs{width:100%;border-collapse:collapse;font-size:.97rem;}
+  table.specs td{padding:13px 0;border-bottom:1px solid var(--line);vertical-align:top;}
+  table.specs td:first-child{color:var(--ink-soft);width:46%;padding-right:20px;}
+  table.specs td:last-child{font-weight:500;}
+  .two-col{display:grid;grid-template-columns:1fr 1fr;gap:56px;}
+  .note{background:var(--paper);border:1px solid var(--line);padding:22px 24px;margin-top:34px;
+    font-size:.94rem;color:var(--ink-soft);}
+  .note strong{color:var(--ink);}
+  .sp-only{display:none;}
+  body.specs-view .sp-only{display:block;}
+  body.specs-view .main-only{display:none;}
+  @media(max-width:860px){
+    .highlights{grid-template-columns:1fr 1fr;}
+    .two-col{grid-template-columns:1fr;gap:0;}
+  }
+
   /* ---- Lightbox ---- */
   .lightbox{
     position:fixed; inset:0; z-index:100;
@@ -314,15 +426,18 @@
 
 <nav>
   <div class="wrap">
-    <div class="brand">ა. გიგოლაშვილი</div>
+    <div class="brand" style="cursor:pointer" onclick="showMain()">ა. გიგოლაშვილი</div>
     <div class="navlinks">
-      <a href="#about">ჩემ შესახებ</a>
-      <a href="#car">E46</a>
+      <a href="#about" onclick="showMain();">ჩემ შესახებ</a>
+      <a href="#car" onclick="showMain();">E46</a>
+      <a href="#specs" onclick="showSpecs();return false;">მონაცემები</a>
       <a href="https://www.instagram.com/_anan0_/" target="_blank" rel="noopener">Instagram</a>
+      <button class="share-btn" onclick="openShare()">გაზიარება</button>
     </div>
   </div>
 </nav>
 
+<div class="main-only">
 <header class="hero wrap">
   <div>
     <div class="hero-eyebrow">პირადი გვერდი</div>
@@ -375,6 +490,9 @@
         <li><span>ფერი</span><span>შავი</span></li>
         <li><span>ხასიათი</span><span>სადა &amp; მძლავრი</span></li>
       </ul>
+      <p style="margin-top:20px;">
+        <a href="#specs" onclick="showSpecs();return false;" style="color:#fff; font-size:0.95rem;">სრული ტექნიკური მონაცემები →</a>
+      </p>
     </div>
 
     <div class="gallery">
@@ -409,11 +527,183 @@
     <cite>— ანანო გიგოლაშვილი</cite>
   </blockquote>
 </section>
+</div>
+
+<div class="sp-only">
+<header class="page-hero">
+  <div class="wrap">
+    <div class="eyebrow">ტექნიკური მონაცემები</div>
+    <h1>BMW E46 330i · 3.0 R6<br>Steptronic ავტომატი</h1>
+    <p>M54B30 — ბუნებრივად შემწოვი 3.0 ლიტრიანი რიგითი ექვსცილინდრიანი ძრავი, უკანა წამყვანი ბორბლები და ხუთსაფეხურიანი ავტომატური გადაცემათა კოლოფი. E46 თაობის ერთ-ერთი ყველაზე დაბალანსებული ვერსია.</p>
+    <dl class="highlights">
+      <div class="hl"><dt>სიმძლავრე</dt><dd>231 <small>ცხ.ძ.</small></dd></div>
+      <div class="hl"><dt>ბრუნვის მომენტი</dt><dd>300 <small>ნმ</small></dd></div>
+      <div class="hl"><dt>0–100 კმ/სთ</dt><dd>7.4 <small>წმ</small></dd></div>
+      <div class="hl"><dt>მაქს. სიჩქარე</dt><dd>250 <small>კმ/სთ*</small></dd></div>
+    </dl>
+  </div>
+</header>
+
+<section class="block wrap">
+  <div class="section-head">
+    <h2>ძრავი</h2>
+    <span>M54B30</span>
+  </div>
+  <div class="two-col">
+    <table class="specs">
+      <tr><td>ძრავის კოდი</td><td>M54B30 (M54 B30)</td></tr>
+      <tr><td>ტიპი</td><td>რიგითი 6-ცილინდრიანი (R6), ბუნებრივად შემწოვი</td></tr>
+      <tr><td>მოცულობა</td><td>2 979 სმ³ (3.0 ლ)</td></tr>
+      <tr><td>სარქვლები</td><td>24 (DOHC, 4 ცილინდრზე)</td></tr>
+      <tr><td>ფაზის რეგულატორი</td><td>Double-VANOS (შემშვები + გამშვები)</td></tr>
+      <tr><td>ბლოკის მასალა</td><td>ალუმინი (თავიც ალუმინი)</td></tr>
+    </table>
+    <table class="specs">
+      <tr><td>ცილინდრი × დგუშის სვლა</td><td>84.0 × 89.6 მმ</td></tr>
+      <tr><td>შეკუმშვის ხარისხი</td><td>10.2 : 1</td></tr>
+      <tr><td>მაქს. სიმძლავრე</td><td>231 ცხ.ძ. (170 კვტ) @ 5 900 ბრ/წთ</td></tr>
+      <tr><td>მაქს. ბრუნვის მომენტი</td><td>300 ნმ @ 3 500 ბრ/წთ</td></tr>
+      <tr><td>მაქს. ბრუნები</td><td>~6 500 ბრ/წთ (შეზღუდვა)</td></tr>
+      <tr><td>საწვავი</td><td>ბენზინი, 95–98 ოქტანი</td></tr>
+    </table>
+  </div>
+</section>
+
+<section class="block wrap">
+  <div class="section-head">
+    <h2>ტრანსმისია</h2>
+    <span>ავტომატი</span>
+  </div>
+  <div class="two-col">
+    <table class="specs">
+      <tr><td>გადაცემათა კოლოფი</td><td>5-საფეხურიანი ავტომატი, Steptronic</td></tr>
+      <tr><td>კოლოფის მოდელი</td><td>GM 5L40-E</td></tr>
+      <tr><td>რეჟიმები</td><td>D / S სპორტული / ხელით გადართვა</td></tr>
+    </table>
+    <table class="specs">
+      <tr><td>წამყვანი ბორბლები</td><td>უკანა (RWD)</td></tr>
+      <tr><td>დიფერენციალი</td><td>3.46 (ავტომატისთვის ტიპური)</td></tr>
+      <tr><td>კოლოფის ზეთი</td><td>ATF, დაახლ. 9 ლ (სრული მოცულობა)</td></tr>
+    </table>
+  </div>
+</section>
+
+<section class="block wrap">
+  <div class="section-head">
+    <h2>დინამიკა და ხარჯი</h2>
+    <span>ქარხნული მაჩვენებლები</span>
+  </div>
+  <div class="two-col">
+    <table class="specs">
+      <tr><td>0–100 კმ/სთ (ავტომატი)</td><td>≈ 7.4 წამი</td></tr>
+      <tr><td>0–100 კმ/სთ (მექანიკა, შედარებისთვის)</td><td>≈ 6.5 წამი</td></tr>
+      <tr><td>მაქს. სიჩქარე</td><td>250 კმ/სთ (ელექტრონულად შეზღუდული)</td></tr>
+      <tr><td>სიმძლავრე / ტონა</td><td>≈ 152 ცხ.ძ./ტ</td></tr>
+    </table>
+    <table class="specs">
+      <tr><td>ხარჯი — ქალაქი</td><td>≈ 14.5 ლ/100 კმ</td></tr>
+      <tr><td>ხარჯი — ტრასა</td><td>≈ 7.5 ლ/100 კმ</td></tr>
+      <tr><td>ხარჯი — შერეული</td><td>≈ 10.0–10.5 ლ/100 კმ</td></tr>
+      <tr><td>საწვავის ავზი</td><td>63 ლიტრი</td></tr>
+    </table>
+  </div>
+</section>
+
+<section class="block wrap">
+  <div class="section-head">
+    <h2>ძარა და ზომები</h2>
+    <span>სედანი (E46)</span>
+  </div>
+  <div class="two-col">
+    <table class="specs">
+      <tr><td>სიგრძე</td><td>4 471 მმ</td></tr>
+      <tr><td>სიგანე</td><td>1 739 მმ</td></tr>
+      <tr><td>სიმაღლე</td><td>1 415 მმ</td></tr>
+      <tr><td>ბაზა</td><td>2 725 მმ</td></tr>
+    </table>
+    <table class="specs">
+      <tr><td>მასა</td><td>≈ 1 520 კგ (ავტომატი)</td></tr>
+      <tr><td>საბარგული</td><td>440 ლიტრი</td></tr>
+      <tr><td>ადგილები</td><td>5</td></tr>
+      <tr><td>წარმოების წლები</td><td>2000–2005 (330i)</td></tr>
+    </table>
+  </div>
+</section>
+
+<section class="block wrap">
+  <div class="section-head">
+    <h2>სავალი ნაწილი და მოვლა</h2>
+    <span>პრაქტიკული ინფო</span>
+  </div>
+  <div class="two-col">
+    <table class="specs">
+      <tr><td>წინა საკიდარი</td><td>MacPherson, ალუმინის ბერკეტები</td></tr>
+      <tr><td>უკანა საკიდარი</td><td>მრავალბერკეტიანი (Z-axle)</td></tr>
+      <tr><td>მუხრუჭები</td><td>ვენტილირებული დისკები 4-ვე ბორბალზე</td></tr>
+      <tr><td>სისტემები</td><td>ABS, DSC, EBD</td></tr>
+    </table>
+    <table class="specs">
+      <tr><td>ძრავის ზეთი</td><td>≈ 6.5 ლ, 5W-30 / 5W-40 (LL-01)</td></tr>
+      <tr><td>ანტიფრიზი</td><td>≈ 8.8 ლ, BMW ლურჯი (ნიტრიტის გარეშე)</td></tr>
+      <tr><td>სტანდარტული საბურავები</td><td>225/45 R17 (ან 205/55 R16)</td></tr>
+      <tr><td>ზეთის ცვლის ინტერვალი</td><td>რეკომენდებულია ყოველ 8–10 ათას კმ-ში</td></tr>
+    </table>
+  </div>
+
+  <div class="note">
+    <strong>სუსტი წერტილები, რასაც ყურადღება სჭირდება:</strong> VANOS-ის ბუდეები, DISA სარქველი,
+    რადიატორისა და გამაფართოებელი ავზის პლასტმასი, ზეთის გამყოფი (CCV) ცივ კლიმატში, უკანა საკიდრის
+    ჩარჩოს (subframe) შედუღების წერტილები და საჭის კარდანი. სწორად მოვლილი M54B30 მშვიდად გადის
+    400 000+ კმ-ს.
+  </div>
+
+  <div class="note">
+    <strong>შენიშვნა:</strong> „330" ინდექსი სამ ვერსიაში არსებობდა — <strong>330i / 330Ci</strong> (ბენზინი, 3.0, 231 ცხ.ძ.),
+    <strong>330d</strong> (დიზელი, 3.0, 184 ცხ.ძ., ფეისლიფტის შემდეგ 204 ცხ.ძ.) და <strong>330xi</strong> (სრული წამყვანი).
+    ზემოთ მოცემული მონაცემები ეხება <strong>330i სედანს ავტომატური კოლოფით</strong>.
+    * მაქსიმალური სიჩქარე შეზღუდულია ქარხნულად 250 კმ/სთ-ზე.
+  </div>
+</section>
+
+<section class="block wrap">
+  <div class="section-head">
+    <h2>ფოტოები</h2>
+    <span>შავი E46 330 Sedan</span>
+  </div>
+  <div class="gallery">
+    <a href="#" onclick="openLightbox('https://i.postimg.cc/dZFJBzFW/0ab3bc4d-136d-4d0f-a7ed-c10afd097594.jpg');return false;"><img src="https://i.postimg.cc/dZFJBzFW/0ab3bc4d-136d-4d0f-a7ed-c10afd097594.jpg" alt="BMW E46 330 Sedan"></a>
+    <a href="#" onclick="openLightbox('https://i.postimg.cc/qqhgkT5V/52485d44-1bb4-4480-adff-496fd28b458d.jpg');return false;"><img src="https://i.postimg.cc/qqhgkT5V/52485d44-1bb4-4480-adff-496fd28b458d.jpg" alt="BMW E46 330 Sedan"></a>
+    <a href="#" onclick="openLightbox('https://i.postimg.cc/1Xn49Qjs/93cb9ba7-da66-4b65-9343-b384e1f1598f.jpg');return false;"><img src="https://i.postimg.cc/1Xn49Qjs/93cb9ba7-da66-4b65-9343-b384e1f1598f.jpg" alt="BMW E46 330 Sedan"></a>
+    <a href="#" onclick="openLightbox('https://i.postimg.cc/6q2T9XmK/aad3ee05-32e6-4524-b62c-c1d668ca526d.jpg');return false;"><img src="https://i.postimg.cc/6q2T9XmK/aad3ee05-32e6-4524-b62c-c1d668ca526d.jpg" alt="BMW E46 330 Sedan"></a>
+    <a href="#" onclick="openLightbox('https://i.postimg.cc/wMy36pGp/e79ac81f-3544-4039-877b-6d85f2073a4c.jpg');return false;"><img src="https://i.postimg.cc/wMy36pGp/e79ac81f-3544-4039-877b-6d85f2073a4c.jpg" alt="BMW E46 330 Sedan"></a>
+    <a href="#" onclick="openLightbox('https://i.postimg.cc/PJpNtjRt/ea5b9960-0af4-4601-9def-e24df5955cda.jpg');return false;"><img src="https://i.postimg.cc/PJpNtjRt/ea5b9960-0af4-4601-9def-e24df5955cda.jpg" alt="BMW E46 330 Sedan"></a>
+    <a href="#" onclick="openLightbox('https://i.postimg.cc/g0gVM3X4/29bab2c1-879e-42b3-8c73-47f6204aab3c.jpg');return false;"><img src="https://i.postimg.cc/g0gVM3X4/29bab2c1-879e-42b3-8c73-47f6204aab3c.jpg" alt="BMW E46 330 Sedan"></a>
+  </div>
+</section>
+</div>
 
 <footer class="wrap">
   <span>ანანო გიგოლაშვილი</span>
   <span>საქართველო</span>
 </footer>
+
+<button class="share-btn share-fab" onclick="openShare()">გაზიარება</button>
+
+<div class="share-modal" id="shareModal" onclick="closeShare(event)">
+  <div class="share-card" onclick="event.stopPropagation()">
+    <button class="share-close" onclick="closeShare(event)" aria-label="დახურვა">✕</button>
+    <h3>გაუზიარე მეგობრებს</h3>
+    <div class="sub">აირჩიე პლატფორმა</div>
+    <div class="share-list">
+      <a id="sh-wa" href="#" target="_blank" rel="noopener"><span class="ico ico-wa">W</span>WhatsApp</a>
+      <a id="sh-ms" href="#" target="_blank" rel="noopener"><span class="ico ico-ms">M</span>Messenger</a>
+      <button onclick="shareInstagram()"><span class="ico ico-ig">IG</span>Instagram (ლინკი დაკოპირდება)</button>
+      <button onclick="copyLink()"><span class="ico ico-cp">↗</span>ლინკის კოპირება</button>
+      <button id="sh-native" onclick="nativeShare()" style="display:none;"><span class="ico ico-cp">⋯</span>სხვა აპლიკაციები</button>
+    </div>
+    <div class="copied-note" id="copiedNote">ლინკი დაკოპირდა ✓</div>
+  </div>
+</div>
 
 <div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
   <button class="lightbox-close" onclick="closeLightbox(event)" aria-label="დახურვა">✕</button>
@@ -435,8 +725,61 @@
     document.body.style.overflow = '';
   }
   document.addEventListener('keydown', function(e){
-    if(e.key === 'Escape') closeLightbox();
+    if(e.key === 'Escape'){ closeLightbox(); closeShare(); }
   });
+
+  /* ---- Share ---- */
+  var SHARE_TEXT = 'ანანო გიგოლაშვილი — პირადი გვერდი და შავი BMW E46 330';
+
+  function shareUrl(){
+    return window.location.href.split('#')[0];
+  }
+  function openShare(){
+    var url = encodeURIComponent(shareUrl());
+    var txt = encodeURIComponent(SHARE_TEXT + ' ');
+    document.getElementById('sh-wa').href = 'https://wa.me/?text=' + txt + url;
+    document.getElementById('sh-ms').href =
+      /Android|iPhone|iPad/i.test(navigator.userAgent)
+        ? 'fb-messenger://share?link=' + url
+        : 'https://www.facebook.com/sharer/sharer.php?u=' + url;
+    if(navigator.share) document.getElementById('sh-native').style.display = 'flex';
+    document.getElementById('shareModal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeShare(e){
+    if(e) e.preventDefault();
+    var m = document.getElementById('shareModal');
+    if(!m) return;
+    m.classList.remove('open');
+    document.getElementById('copiedNote').classList.remove('show');
+    document.body.style.overflow = '';
+  }
+  function copyLink(){
+    var url = shareUrl();
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(url).then(showCopied, fallbackCopy);
+    } else { fallbackCopy(); }
+    function fallbackCopy(){
+      var t = document.createElement('textarea');
+      t.value = url; document.body.appendChild(t); t.select();
+      try{ document.execCommand('copy'); }catch(err){}
+      document.body.removeChild(t); showCopied();
+    }
+  }
+  function showCopied(){
+    document.getElementById('copiedNote').classList.add('show');
+  }
+  function shareInstagram(){
+    copyLink();
+    setTimeout(function(){
+      window.open('https://www.instagram.com/_anan0_/', '_blank', 'noopener');
+    }, 500);
+  }
+  function nativeShare(){
+    if(navigator.share){
+      navigator.share({title: 'ანანო გიგოლაშვილი', text: SHARE_TEXT, url: shareUrl()});
+    }
+  }
 </script>
 
 </body>
